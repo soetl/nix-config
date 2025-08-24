@@ -15,6 +15,4 @@ in
 
     packages = [ pkgs.home-manager ];
   };
-
-  security.pam.services.hyprlock = { };
 }

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./core
@@ -6,20 +6,28 @@
     ./nvidia.nix
     ./user.nix
 
+    ../../modules/nixos/secureboot.nix
+
     ../../modules/nixos/sddm
+
+    ../../modules/nixos/kde
     ../../modules/nixos/hyprland
+
+    ../../modules/nixos/1password.nix
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
     hostName = "nixos";
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {
-      efi.canTouchEfiVariables = true;
       systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
   };
 

@@ -1,33 +1,32 @@
 {
   inputs,
   pkgs,
-  pkgs-unstable,
   lib,
   ...
 }:
 {
-  imports = [
-    inputs.illogical-impulse.homeManagerModules.default
-  ];
-
   home = {
     username = "soetl";
-    homeDirectory = lib.mkForce "/home/soetl";
+    homeDirectory = "/home/soetl";
 
-    packages = with pkgs-unstable; [
+    packages = with pkgs; [
       firefox
       chromium
 
       zed-editor
+      vscode
 
       telegram-desktop
-      element-desktop
       discord
     ];
+
+    stateVersion = "25.05";
   };
 
   programs.git = {
     enable = true;
+    userName = "soetl";
+    userEmail = "soetl@proton.me";
   };
 
   xdg.userDirs = {

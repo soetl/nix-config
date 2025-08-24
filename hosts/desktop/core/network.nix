@@ -10,7 +10,10 @@
       wifi.backend = "iwd";
     };
 
-    wireless.enable = false;
+    wireless = {
+      enable = false;
+      iwd.enable = true;
+    };
     firewall.enable = false;
   };
 

@@ -2,14 +2,18 @@
   description = "Soetl's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    illogical-impulse = {
-      url = "github:xBLACKICEx/end-4-dots-hyprland-nixos/main";
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -18,7 +22,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
+      nixpkgs-stable,
       home-manager,
       ...
     }@inputs:
@@ -30,9 +34,12 @@
         inherit system;
         config.allowUnfree = true;
       };
-      pkgs-unstable = import nixpkgs-unstable {
+      pkgs-stable = import nixpkgs-stable {
         inherit system;
         config.allowUnfree = true;
+      };
+      specialArgs = {
+        inherit inputs outputs pkgs-stable;
       };
     in
     {
@@ -40,16 +47,20 @@
 
       nixosConfigurations = {
         nixos = lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs outputs pkgs-unstable; };
-          modules = [ ./hosts/desktop ];
+          inherit system specialArgs;
+          modules = [
+            ./hosts/desktop
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+          ];
         };
       };
 
       homeConfigurations = {
         "soetl@nixos" = lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs outputs pkgs-unstable; };
+          extraSpecialArgs = specialArgs;
           modules = [ ./homes/soetl ];
         };
       };

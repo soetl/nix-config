@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   config,
   modulesPath,
   ...
@@ -7,6 +8,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.disko.nixosModules.disko
+    ./disko.nix
   ];
 
   boot = {
@@ -25,34 +28,7 @@
     extraModprobeConfig = "";
 
     tmp.cleanOnBoot = true;
-    supportedFilesystems = [
-      "ext4"
-      "btrfs"
-      "xfs"
-      "ntfs"
-      "fat"
-      "vfat"
-      "exfat"
-    ];
   };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f3596fe1-44f0-473a-aa4b-726663b37f90";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1118-70E6";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/5d1ec0dd-a8d3-4de9-bdf4-48e95e2e6777"; }
-  ];
 
   services.fstrim.enable = lib.mkDefault true;
 

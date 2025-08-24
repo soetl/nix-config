@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    git
     neovim
 
     zip
@@ -15,7 +16,7 @@
     curl
     coreutils
 
-    git
+    sbctl
   ];
 
   environment.variables.EDITOR = "nvim";

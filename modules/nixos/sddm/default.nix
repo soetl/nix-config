@@ -1,14 +1,17 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    sddm-sugar-dark
-    libsForQt5.qt5.qtgraphicaleffects
+    sddm-astronaut
+    kdePackages.qtsvg
+    kdePackages.qtmultimedia
+    kdePackages.qtvirtualkeyboard
   ];
 
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     enableHidpi = true;
-    theme = "${pkgs.sddm-sugar-dark}/share/sddm/themes/sugar-dark";
+    #package = pkgs.kdePackages.sddm;
+    theme = "${pkgs.sddm-astronaut}/share/sddm/themes/sddm-astronaut-theme";
   };
 }

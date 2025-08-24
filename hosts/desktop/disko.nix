@@ -1,0 +1,61 @@
+{
+  disko.devices = {
+    disk = {
+      main = {
+        type = "disk";
+        device = "/dev/disk/by-id/nvme-WD_BLACK_SN850X_4000GB_25033U801898";
+        content = {
+          type = "gpt";
+          partitions = {
+            ESP = {
+              priority = 1;
+              name = "ESP";
+              start = "1M";
+              end = "513M";
+              type = "EF00";
+              content = {
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
+                mountOptions = [ "umask=0077" ];
+              };
+            };
+            root = {
+              size = "100%";
+              content = {
+                type = "btrfs";
+                subvolumes = {
+                  "@" = {
+                    mountOptions = [ "compress=zstd" "space_cache=v2" ];
+                    mountpoint = "/";
+                  };
+                  "@home" = {
+                    mountOptions = [ "compress=zstd" ];
+                    mountpoint = "/home";
+                  };
+                  "@log" = {
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountpoint = "/var/log";
+                  };
+                  "@nix" = {
+                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountpoint = "/nix";
+                  };
+                  "@persist" = {
+                    mountOptions = [ "compress=zstd" ];
+                    mountpoint = "/persist";
+                  };
+                  "@swap" = {
+                    mountpoint = "/.swap";
+                    mountOptions = [ "noatime" ];
+                    swap = { swapfile.size = "48G"; };
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+}
