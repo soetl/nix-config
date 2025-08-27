@@ -28,8 +28,12 @@
     }@inputs:
     let
       inherit (self) outputs;
+
       lib = nixpkgs.lib // home-manager.lib;
+      vars = import ./vars.nix;
+
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -38,30 +42,34 @@
         inherit system;
         config.allowUnfree = true;
       };
-      specialArgs = {
-        inherit inputs outputs pkgs-stable;
+
+      args = {
+        inherit
+          inputs
+          outputs
+          lib
+          vars
+          pkgs-stable
+          ;
       };
     in
     {
-      inherit lib;
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        nixos = lib.nixosSystem {
-          inherit system specialArgs;
-          modules = [
-            ./hosts/desktop
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
-          ];
+        desktop = lib.nixosSystem {
+          inherit system;
+          specialArgs = args;
+          modules = [ ./hosts/desktop ];
         };
       };
 
       homeConfigurations = {
-        "soetl@nixos" = lib.homeManagerConfiguration {
+        "${vars.user.name}@${vars.hostname}" = lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = specialArgs;
-          modules = [ ./homes/soetl ];
+          extraSpecialArgs = args;
+          modules = [ ./homes/desktop ];
         };
       };
     };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, outputs, ... }:
 {
   imports = [
     ./core
@@ -6,28 +6,35 @@
     ./nvidia.nix
     ./user.nix
 
-    ../../modules/nixos/secureboot.nix
-
-    ../../modules/nixos/sddm
-
-    ../../modules/nixos/kde
-    ../../modules/nixos/hyprland
-
-    ../../modules/nixos/1password.nix
+    outputs.nixosModules.base
+    outputs.nixosModules.core
+    outputs.nixosModules.desktop
   ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  networking = {
-    hostName = "nixos";
-  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+  };
+  nixosModules.core.secureboot.enable = true;
 
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+  nixosModules.desktop = {
+    sddm = {
+      enable = true;
+      theme.enable = true;
+    };
+
+    kde.enable = true;
+
+    hyprland.enable = true;
+
+    _1password = {
+      enable = true;
+      gui.enable = true;
+    };
+
+    remoteDesktop.sunshine = {
+      enable = true;
+      openFirewall = true;
+      nvenc.enable = true;
     };
   };
 

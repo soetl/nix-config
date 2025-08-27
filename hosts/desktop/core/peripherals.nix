@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  # TODO: Break out into a modules
   environment.systemPackages = with pkgs; [
     pulseaudio
   ];

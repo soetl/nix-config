@@ -1,9 +1,15 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
+{
+  # TODO: Break out into a modules
   networking.useDHCP = lib.mkDefault true;
 
   networking = {
-    hostName = "nixos";
+    hostName = vars.hostname;
 
     networkmanager = {
       enable = true;
@@ -14,7 +20,10 @@
       enable = false;
       iwd.enable = true;
     };
-    firewall.enable = false;
+
+    firewall = {
+      enable = true;
+    };
   };
 
   environment.systemPackages = [ pkgs.iwd ];

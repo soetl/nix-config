@@ -1,18 +1,15 @@
-{ config, pkgs, ... }:
-let
-  ifGroupExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in
+{ pkgs, vars, ... }:
 {
-  users.users.soetl = {
-    isNormalUser = true;
+  users.users."${vars.user.name}" = {
     shell = pkgs.fish;
-    extraGroups = ifGroupExist [
-      "audio"
-      "i2c"
-      "networkmanager"
-      "wheel"
-    ];
+  };
 
-    packages = [ pkgs.home-manager ];
+  programs.fish = {
+    enable = true;
+    vendor = {
+      completions.enable = true;
+      config.enable = true;
+      functions.enable = true;
+    };
   };
 }

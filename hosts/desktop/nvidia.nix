@@ -1,5 +1,6 @@
 { config, ... }:
 {
+  # TODO: Add as module
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
