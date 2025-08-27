@@ -47,7 +47,6 @@
         inherit
           inputs
           outputs
-          lib
           vars
           pkgs-stable
           ;
