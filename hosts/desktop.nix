@@ -25,6 +25,8 @@
       config = "btrfs";
     };
 
+    nvidia.enable = true;
+
     user = {
       preconfigure = true;
       shell = "fish";
