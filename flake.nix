@@ -3,14 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +34,10 @@
       vars = import ./vars.nix;
       system = "x86_64-linux";
 
+      commonModules = [
+        { nixpkgs.config.allowUnfree = lib.mkDefault true; }
+      ];
+
       args = {
         inherit inputs outputs vars;
       };
@@ -43,7 +50,7 @@
         desktop = lib.nixosSystem {
           inherit system;
           specialArgs = args;
-          modules = [ ./hosts/desktop.nix ];
+          modules = [ ./hosts/desktop.nix ] ++ commonModules;
         };
       };
 
@@ -51,7 +58,7 @@
         "${vars.user.name}@${vars.hostname}" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = args;
-          modules = [ ./homes/desktop.nix ];
+          modules = [ ./homes/desktop.nix ] ++ commonModules;
         };
       };
     };

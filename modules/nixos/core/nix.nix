@@ -9,8 +9,6 @@ in
 with lib;
 {
   options.nixosModules.core.nix = {
-    allowUnfree = mkEnableOption "Unfree software";
-
     gc = {
       enable = mkEnableOption "Nix Garbage Collection";
 
@@ -41,8 +39,6 @@ with lib;
   };
 
   config = {
-    nixpkgs.config.allowUnfree = mkIf cfg.allowUnfree (mkForce true);
-
     nix.settings.experimental-features = mkDefault [
       "nix-command"
       "flakes"

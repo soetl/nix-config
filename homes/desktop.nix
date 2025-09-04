@@ -5,9 +5,6 @@
   ...
 }:
 {
-  # Configure nixpkgs to allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
     outputs.homeManagerModules.core
     outputs.homeManagerModules.desktop
