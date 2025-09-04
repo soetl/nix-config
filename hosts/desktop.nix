@@ -29,6 +29,12 @@
       config = "btrfs";
     };
 
+    networking = {
+      networkmanager.enable = true;
+      wifi.enable = true;
+      firewall.enable = true;
+    };
+
     nvidia = {
       enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
