@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    outputs.homeManagerModules.core
     outputs.homeManagerModules.desktop
   ];
 
