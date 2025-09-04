@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ./desktop/hardware-configuration.nix
     outputs.nixosModules.core
   ];
 

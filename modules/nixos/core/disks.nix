@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.nixosModules.core.disks;
-  btrfs = import ./btrfs.nix { device = cfg.device; };
+  btrfs = import ./disks/btrfs.nix { device = cfg.device; };
 in
 with lib;
 {

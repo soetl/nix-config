@@ -36,14 +36,14 @@
       };
     in
     {
-      nixosModules = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      nixosModules = import ./modules/nixos.nix;
+      homeManagerModules = import ./modules/home-manager.nix;
 
       nixosConfigurations = {
         desktop = lib.nixosSystem {
           inherit system;
           specialArgs = args;
-          modules = [ ./hosts/desktop ];
+          modules = [ ./hosts/desktop.nix ];
         };
       };
 
@@ -51,7 +51,7 @@
         "${vars.user.name}@${vars.hostname}" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = args;
-          modules = [ ./homes/desktop ];
+          modules = [ ./homes/desktop.nix ];
         };
       };
     };
