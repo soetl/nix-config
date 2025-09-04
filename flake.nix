@@ -36,7 +36,7 @@
       };
 
       homeConfigurations = {
-        "${vars.user.name}@${vars.hostname}" = lib.homeManagerConfigurationlib.homeManagerConfiguration {
+        "${vars.user.name}@${vars.hostname}" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = args;
           modules = [ ./homes/desktop ];
