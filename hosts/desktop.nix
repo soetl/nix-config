@@ -1,5 +1,6 @@
 {
   outputs,
+  pkgs,
   config,
   lib,
   vars,
@@ -12,6 +13,10 @@
 
     outputs.nixosModules.core
   ];
+
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
 
   nixosModules.core = {
     nix = {
