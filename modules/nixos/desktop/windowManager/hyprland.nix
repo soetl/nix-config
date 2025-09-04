@@ -4,11 +4,11 @@
   ...
 }:
 let
-  cfg = config.nixosModules.desktop.window-manager.hyprland;
+  cfg = config.nixosModules.desktop.windowManager.hyprland;
 in
 with lib;
 {
-  options.nixosModules.desktop.window-manager.hyprland = {
+  options.nixosModules.desktop.windowManager.hyprland = {
     enable = mkEnableOption "Hyprland";
   };
 

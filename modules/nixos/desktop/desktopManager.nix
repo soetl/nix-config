@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./desktopManager/sddm.nix
+  ];
+}

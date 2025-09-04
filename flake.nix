@@ -37,7 +37,7 @@
     in
     {
       nixosModules = import ./modules/nixos.nix;
-      homeManagerModules = import ./modules/home-manager.nix;
+      homeManagerModules = import ./modules/homeManager.nix;
 
       nixosConfigurations = {
         desktop = lib.nixosSystem {

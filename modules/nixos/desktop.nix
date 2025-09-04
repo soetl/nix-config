@@ -2,8 +2,8 @@
   imports = [
     ./desktop/apps.nix
     ./desktop/common.nix
-    ./desktop/desktop-manager.nix
+    ./desktop/desktopManager.nix
     ./desktop/networking.nix
-    ./desktop/window-manager.nix
+    ./desktop/windowManager.nix
   ];
 }

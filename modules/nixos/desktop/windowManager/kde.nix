@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.nixosModules.desktop.window-manager.kde;
+  cfg = config.nixosModules.desktop.windowManager.kde;
 in
 with lib;
 {
-  options.nixosModules.desktop.window-manager.kde.enable =
+  options.nixosModules.desktop.windowManager.kde.enable =
     mkEnableOption "KDE Plasma Desktop Environment";
 
   config = mkIf cfg.enable {

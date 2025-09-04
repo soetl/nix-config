@@ -8,7 +8,7 @@
 }:
 {
   imports = [
-    ./desktop/hardware-configuration.nix
+    ./desktop/hardwareConfiguration.nix
     ./desktop/i18n.nix
 
     outputs.nixosModules.core
@@ -65,12 +65,12 @@
   };
 
   nixosModules.desktop = {
-    desktop-manager.sddm = {
+    desktopManager.sddm = {
       enable = true;
       theme.enable = true;
     };
 
-    window-manager = {
+    windowManager = {
       hyprland.enable = true;
       kde.enable = true;
     };

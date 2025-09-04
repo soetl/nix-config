@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.nixosModules.desktop.desktop-manager.sddm;
+  cfg = config.nixosModules.desktop.desktopManager.sddm;
 in
 with lib;
 {
-  options.nixosModules.desktop.desktop-manager.sddm = {
+  options.nixosModules.desktop.desktopManager.sddm = {
     enable = mkEnableOption "SDDM";
     theme = {
       enable = mkEnableOption "SDDM Theme";

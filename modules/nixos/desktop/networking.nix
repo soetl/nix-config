@@ -1,3 +1,3 @@
 {
-  imports = [ ./networking/remote-desktop.nix ];
+  imports = [ ./networking/remoteDesktop.nix ];
 }
