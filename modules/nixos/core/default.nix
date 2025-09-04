@@ -2,5 +2,6 @@
   imports = [
     ./bootloader
     ./disks
+    ./secureboot
   ];
 }
