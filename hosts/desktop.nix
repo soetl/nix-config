@@ -74,6 +74,12 @@
       hyprland.enable = true;
       kde.enable = true;
     };
+
+    networking.remoteDesktop.sunshine = {
+      enable = true;
+      openFirewall = true;
+      nvenc.enable = true;
+    };
   };
 
   system.stateVersion = "25.11";
