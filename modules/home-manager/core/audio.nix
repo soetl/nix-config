@@ -147,8 +147,8 @@ in
     };
 
     # Shell aliases for managing noise reduction
-    homeManagerModules.desktop.shell._aliases =
-      mkIf (config.homeManagerModules.desktop.shell.tools.enable or false)
+    homeManagerModules.core.shell._aliases =
+      mkIf (config.homeManagerModules.core.shell.tools.enable or false)
         {
           noise-on = "systemctl --user start pipewire-noise-reduction";
           noise-off = "systemctl --user stop pipewire-noise-reduction";

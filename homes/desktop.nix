@@ -5,6 +5,9 @@
   ...
 }:
 {
+  # Configure nixpkgs to allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     outputs.homeManagerModules.core
     outputs.homeManagerModules.desktop
@@ -58,10 +61,7 @@
     autostart = true;
   };
 
-  homeManagerModules.core.font = {
-    enable = true;
-    jetbrainsMono.enable = true;
-  };
+  homeManagerModules.core.font.jetbrainsMono.enable = true;
 
   home = {
     username = vars.user.name;

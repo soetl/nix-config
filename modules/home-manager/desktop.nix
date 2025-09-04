@@ -1,3 +1,3 @@
 {
-  imports = [ ./desktop/bluetooth.nix ];
+  imports = [ ];
 }
