@@ -27,7 +27,7 @@ with lib;
 
   config = {
     boot.loader = {
-      inherit timeout;
+      inherit (cfg) timeout;
 
       systemd-boot = mkIf cfg.systemd-boot.enable {
         #inherit (cfg) configurationLimit; # TODO: Enable after configuration is established
