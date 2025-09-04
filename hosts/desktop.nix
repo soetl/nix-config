@@ -28,6 +28,7 @@
     };
 
     bootloader.systemd-boot.enable = true;
+    secureboot.enable = true;
 
     disks = {
       inherit (vars.disks) device;
@@ -41,6 +42,8 @@
       firewall.enable = true;
     };
 
+    bluetooth.enable = true;
+
     nvidia = {
       enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -52,6 +55,8 @@
         persistencedSha256 = lib.fakeSha256;
       };
     };
+
+    audio.enable = true;
 
     user = {
       preconfigure = true;
