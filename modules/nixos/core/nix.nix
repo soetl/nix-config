@@ -41,7 +41,7 @@ with lib;
   };
 
   config = {
-    nixpkgs.config.allowUnfree = mkIf cfg.allowUnfree mkForce true;
+    nixpkgs.config.allowUnfree = mkIf cfg.allowUnfree (mkForce true);
 
     nix.settings.experimental-features = mkDefault [
       "nix-command"
