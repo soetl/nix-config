@@ -80,6 +80,13 @@
       openFirewall = true;
       nvenc.enable = true;
     };
+
+    apps = {
+      _1password = {
+        enable = true;
+        gui.enable = true;
+      };
+    };
   };
 
   system.stateVersion = "25.11";
