@@ -6,5 +6,6 @@
     ./disks
     ./nix
     ./secureboot
+    ./user
   ];
 }

@@ -1,6 +1,18 @@
 {
   user = {
     name = "soetl";
+    initialHashedPassword = "$7$GU..../....xRGneFIgUpGcd6NmUhJHg0$50oRh1wLvJZiSmbmvhWZUKcaRm7TmFwGLdOy75nss4A";
+
+    extraGroups = [
+      "audio"
+      "docker"
+      "i2c"
+      "libvirtd"
+      "networkmanager"
+      "plugdev"
+      "video"
+      "wheel"
+    ];
   };
 
   hostname = "nixos";

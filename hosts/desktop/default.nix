@@ -1,4 +1,9 @@
-{ outputs, vars, ... }:
+{
+  outputs,
+  pkgs,
+  vars,
+  ...
+}:
 {
   imports = [
     ./hardware-configuration.nix
@@ -12,6 +17,11 @@
       inherit (vars.disks) device;
       enable = true;
       config = "btrfs";
+    };
+
+    user = {
+      preconfigure = true;
+      shell = pkgs.fish;
     };
   };
 
