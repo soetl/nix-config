@@ -8,6 +8,8 @@
 {
   imports = [
     ./desktop/hardware-configuration.nix
+    ./desktop/i18n.nix
+
     outputs.nixosModules.core
   ];
 
