@@ -14,6 +14,7 @@
       self,
       nixpkgs,
       home-manager,
+      ...
     }@inputs:
     let
       inherit (self) outputs;
@@ -27,6 +28,9 @@
       };
     in
     {
+      nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
       nixosConfigurations = {
         desktop = lib.nixosSystem {
           inherit system;
