@@ -1,6 +1,7 @@
 { outputs, vars, ... }:
 {
   imports = [
+    ./hardware-configuration.nix
     outputs.nixosModules.core
   ];
 
