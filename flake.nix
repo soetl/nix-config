@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,7 +28,7 @@
       system = "x86_64-linux";
 
       args = {
-        inherit inputs outputs;
+        inherit inputs outputs vars;
       };
     in
     {
