@@ -14,8 +14,11 @@ with lib;
   options.nixosModules.core.user = {
     preconfigure = mkEnableOption "User preconfiguration";
     shell = mkOption {
-      type = types.package;
-      default = pkgs.bashInteractive;
+      type = types.enum [
+        "bash"
+        "fish"
+      ];
+      default = "bash";
       description = "The default shell for the user";
     };
   };
@@ -25,8 +28,15 @@ with lib;
       isNormalUser = true;
       initialHashedPassword = vars.user.initialHashedPassword;
       extraGroups = (ifGroupExist vars.user.extraGroups);
-      shell = cfg.shell;
+      shell =
+        {
+          "bash" = pkgs.bashInteractive;
+          "fish" = pkgs.fish;
+        }
+        ."${cfg.shell}" or { };
       packages = [ pkgs.home-manager ];
     };
+
+    programs.fish.enable = mkIf (cfg.shell == "fish") true;
   };
 }
