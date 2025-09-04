@@ -64,6 +64,11 @@
       enable = true;
       theme.enable = true;
     };
+
+    window-manager = {
+      hyprland.enable = true;
+      kde.enable = true;
+    };
   };
 
   system.stateVersion = "25.11";
