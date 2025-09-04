@@ -4,6 +4,7 @@
     ./bluetooth
     ./bootloader
     ./disks
+    ./nix
     ./secureboot
   ];
 }
