@@ -30,7 +30,7 @@ with lib;
       inherit (cfg) timeout;
 
       systemd-boot = mkIf cfg.systemd-boot.enable {
-        #inherit (cfg) configurationLimit; # TODO: Enable after configuration is established
+        inherit (cfg.systemd-boot) configurationLimit;
         enable = mkDefault true;
         consoleMode = mkDefault "max";
       };
