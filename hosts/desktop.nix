@@ -21,7 +21,7 @@
 
     user = {
       preconfigure = true;
-      shell = pkgs.fish;
+      shell = "fish";
     };
   };
 
