@@ -12,6 +12,7 @@
     ./desktop/i18n.nix
 
     outputs.nixosModules.core
+    outputs.nixosModules.desktop
   ];
 
   boot = {
@@ -55,6 +56,13 @@
     user = {
       preconfigure = true;
       shell = "fish";
+    };
+  };
+
+  nixosModules.desktop = {
+    desktop-manager.sddm = {
+      enable = true;
+      theme.enable = true;
     };
   };
 
