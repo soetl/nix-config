@@ -61,7 +61,7 @@ with lib;
 
         pulse.enable = mkIf cfg.pulseaudio.enable true;
         jack.enable = mkIf cfg.jack.enable true;
-        wireplumber.enable = mkIf cfg.wireplumber.enable mkDefault true;
+        wireplumber.enable = mkDefault true;
       };
 
       pulseaudio.enable = mkDefault false;
