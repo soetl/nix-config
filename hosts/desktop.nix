@@ -35,6 +35,8 @@
       config = "btrfs";
     };
 
+    polkit.enable = true;
+
     networking = {
       networkmanager.enable = true;
       wifi.enable = true;
