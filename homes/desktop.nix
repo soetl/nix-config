@@ -82,6 +82,10 @@
       # Media & Graphics
       vlc
       davinci-resolve
+
+      rofi-wayland
+      dunst
+      kdePackages.polkit-kde-agent-1
     ];
 
     sessionVariables = {
@@ -93,6 +97,31 @@
 
     stateVersion = "25.11";
   };
+
+  homeManagerModules.desktop = {
+    hyprland.enable = true;
+    waybar.enable = true;
+  };
+
+  systemd.user.services.polkit-kde-authentication-agent-1 = {
+    Unit = {
+      Description = "polkit-kde-authentication-agent-1";
+      Wants = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
+  programs.kitty.enable = true;
 
   programs = {
     firefox = {

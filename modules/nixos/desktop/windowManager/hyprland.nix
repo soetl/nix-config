@@ -16,5 +16,12 @@ with lib;
     nixosModules.desktop.common.wayland.enable = mkForce true;
 
     programs.hyprland.enable = true;
+
+    services.gnome.gnome-keyring.enable = true;
+
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+    };
   };
 }

@@ -44,5 +44,7 @@ with lib;
       enableHidpi = true;
       theme = mkIf cfg.theme.enable cfg.theme.path;
     };
+
+    security.pam.services.sddm.enableGnomeKeyring = true;
   };
 }
