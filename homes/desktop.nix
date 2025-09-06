@@ -41,6 +41,7 @@
         vim = "nvim";
         ".." = "cd ..";
         "..." = "cd ../..";
+        zed = "zeditor";
       };
     };
 
@@ -66,7 +67,6 @@
 
     packages = with pkgs; [
       # Browsers
-      firefox
       chromium
 
       # Development
@@ -95,6 +95,10 @@
   };
 
   programs = {
+    firefox = {
+      enable = true;
+    };
+
     git = {
       enable = true;
       userName = vars.user.name;
