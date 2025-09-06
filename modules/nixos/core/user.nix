@@ -27,7 +27,7 @@ with lib;
     users.users."${vars.user.name}" = {
       isNormalUser = true;
       initialHashedPassword = vars.user.initialHashedPassword;
-      extraGroups = (ifGroupExist vars.user.extraGroups);
+      extraGroups = ifGroupExist vars.user.extraGroups;
       shell =
         {
           "bash" = pkgs.bashInteractive;
@@ -37,6 +37,7 @@ with lib;
       packages = [ pkgs.home-manager ];
     };
 
+    users.mutableUsers = true;
     programs.fish.enable = mkIf (cfg.shell == "fish") true;
   };
 }
