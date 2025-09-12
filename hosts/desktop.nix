@@ -1,8 +1,6 @@
 {
   outputs,
   pkgs,
-  config,
-  lib,
   vars,
   ...
 }:
@@ -47,14 +45,14 @@
 
     nvidia = {
       enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        version = "580.82.07";
-        sha256_64bit = "sha256-Bh5I4R/lUiMglYEdCxzqm3GLolQNYFB0/yJ/zgYoeYw==";
-        sha256_aarch64 = lib.fakeSha256;
-        openSha256 = "sha256-8/7ZrcwBMgrBtxebYtCcH5A51u3lAxXTCY00LElZz08=";
-        settingsSha256 = "sha256-lx1WZHsW7eKFXvi03dAML6BoC5glEn63Tuiz3T867nY=";
-        persistencedSha256 = lib.fakeSha256;
-      };
+      # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      #   version = "580.82.07";
+      #   sha256_64bit = "sha256-Bh5I4R/lUiMglYEdCxzqm3GLolQNYFB0/yJ/zgYoeYw==";
+      #   sha256_aarch64 = lib.fakeSha256;
+      #   openSha256 = "sha256-8/7ZrcwBMgrBtxebYtCcH5A51u3lAxXTCY00LElZz08=";
+      #   settingsSha256 = "sha256-lx1WZHsW7eKFXvi03dAML6BoC5glEn63Tuiz3T867nY=";
+      #   persistencedSha256 = lib.fakeSha256;
+      # };
     };
 
     audio.enable = true;
@@ -73,7 +71,6 @@
 
     windowManager = {
       hyprland.enable = true;
-      kde.enable = true;
     };
 
     networking.remoteDesktop.sunshine = {

@@ -1,4 +1,5 @@
 {
+  inputs,
   outputs,
   pkgs,
   vars,
@@ -8,6 +9,7 @@
   imports = [
     outputs.homeManagerModules.core
     outputs.homeManagerModules.desktop
+    inputs.illogicalImpulse.homeManagerModules.default
   ];
 
   homeManagerModules.core.shell = {
@@ -53,7 +55,7 @@
   homeManagerModules.core.audio.noiseReduction = {
     enable = true;
     rnnoise = {
-      vadThreshold = 50.0;
+      vadThreshold = 60.0;
       vadGracePeriod = 200;
     };
     autostart = true;
@@ -74,6 +76,7 @@
       vscode
       git-crypt
       pre-commit
+      git-credential-manager
 
       # Communication
       telegram-desktop
@@ -82,6 +85,10 @@
       # Media & Graphics
       vlc
       davinci-resolve
+
+      rofi-wayland
+      dunst
+      kdePackages.polkit-kde-agent-1
     ];
 
     sessionVariables = {
@@ -94,6 +101,34 @@
     stateVersion = "25.11";
   };
 
+  homeManagerModules.desktop = {
+    hyprland.enable = false;
+    waybar.enable = false;
+    illogical-impulse.enable = false;
+  };
+
+  programs.illogical-impulse.enable = true;
+
+  systemd.user.services.polkit-kde-authentication-agent-1 = {
+    Unit = {
+      Description = "polkit-kde-authentication-agent-1";
+      Wants = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
+  };
+
+  programs.kitty.enable = true;
+
   programs = {
     firefox = {
       enable = true;
@@ -105,8 +140,15 @@
       userEmail = vars.user.email;
       extraConfig = {
         init.defaultBranch = "main";
+
         pull.rebase = false;
         push.autoSetupRemote = true;
+
+        credential = {
+          helper = "manager";
+          credentialStore = "cache";
+          "https://github.com".username = "soetl";
+        };
       };
       delta.enable = true;
     };
