@@ -18,6 +18,16 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    illogical-impulse = {
+      url = "github:soetl/end-4-dots-hyprland-nixos/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    illogicalImpulse = {
+      url = "git+file:///home/soetl/Projects/end-4-dots-hyprland?ref=dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

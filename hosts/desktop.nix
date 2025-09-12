@@ -1,8 +1,6 @@
 {
   outputs,
   pkgs,
-  config,
-  lib,
   vars,
   ...
 }:
@@ -73,7 +71,6 @@
 
     windowManager = {
       hyprland.enable = true;
-      kde.enable = true;
     };
 
     networking.remoteDesktop.sunshine = {

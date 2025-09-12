@@ -17,7 +17,7 @@ in
     rnnoise = {
       vadThreshold = mkOption {
         type = types.float;
-        default = 50.0;
+        default = 60.0;
         description = "Voice Activity Detection threshold (%)";
       };
 
