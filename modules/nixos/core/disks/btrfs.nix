@@ -11,8 +11,8 @@
             ESP = {
               priority = 1;
               name = "ESP";
-              start = "1M";
-              end = "513M";
+              start = "8M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -51,15 +51,15 @@
                     ];
                     mountpoint = "/nix";
                   };
-                  "@persist" = {
+                  "@persistent" = {
                     mountOptions = [ "compress=zstd" ];
-                    mountpoint = "/persist";
+                    mountpoint = "/persistent";
                   };
                   "@swap" = {
                     mountpoint = "/.swap";
                     mountOptions = [ "noatime" ];
                     swap = {
-                      swapfile.size = "48G";
+                      swapfile.size = "38G";
                     };
                   };
                 };
